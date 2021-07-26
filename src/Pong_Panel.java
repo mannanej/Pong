@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 public class Pong_Panel extends JPanel {
-	
+
 	private static final long serialVersionUID = 7932841840610077942L;
 	public JFrame frame;
 	public Boxes leftBox;
@@ -28,7 +28,7 @@ public class Pong_Panel extends JPanel {
 		this.frame.addKeyListener(new KeyList(this.leftBox, this.rightBox));
 		this.ball = new Ball(WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	}
-	
+
 	@Override
 	public void paintComponent(Graphics g) {
 
@@ -39,11 +39,11 @@ public class Pong_Panel extends JPanel {
 	}
 
 	public void update() {
-		
+
 		this.leftBox.update();
 		this.rightBox.update();
 		if (this.ball.overlapsWithLeft(this.leftBox) || this.ball.overlapsWithRight(this.rightBox)) {
-			this.ball.stop();
+			this.ball.bounceBack();
 		}
 		this.ball.update();
 	}

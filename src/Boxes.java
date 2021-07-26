@@ -18,7 +18,7 @@ public class Boxes {
 		this.y = y;
 		this.width = 30;
 		this.height = 250;
-		this.moveSpeed = 10;
+		this.moveSpeed = 5;
 		this.velX = 0;
 		this.velY = 0;
 	}
@@ -57,7 +57,7 @@ public class Boxes {
 		this.velY = this.moveSpeed;
 		this.normalizeVelocity();
 	}
-	
+
 	public void moveLeft() {
 
 		this.velX = (-1) * this.moveSpeed;
@@ -73,7 +73,7 @@ public class Boxes {
 	}
 
 	public void stop() {
-		
+
 		this.velX = 0;
 		this.velY = 0;
 	}

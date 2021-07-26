@@ -8,6 +8,7 @@ public class Ball {
 	int y;
 	int velX;
 	int velY;
+	int boxVelY;
 	int radius;
 	int moveSpeed;
 
@@ -16,7 +17,7 @@ public class Ball {
 		this.x = x;
 		this.y = y;
 		this.radius = 50;
-		this.moveSpeed = 25; // 10
+		this.moveSpeed = 10; // 10
 		this.velX = (int) (this.moveSpeed - (Math.random() * 10) + 1);
 		this.velY = (int) (this.moveSpeed - (Math.random() * 10) + 1);
 	}
@@ -42,9 +43,9 @@ public class Ball {
 			this.x = (int) Math.min(Math.max(this.x, 0), 1275);
 			this.velX = 0;
 		}
-		if (this.y > 675 || this.y < 0) {
+		if (this.y >= 675 || this.y <= 0) {
 			this.y = (int) Math.min(Math.max(this.y, 0), 675);
-			this.velY = 0;
+			this.velY = (-1) * this.velY;
 		}
 	}
 
@@ -92,17 +93,32 @@ public class Ball {
 
 	public boolean overlapsWithLeft(Boxes leftBox) {
 
-		int xDiff = this.x - (leftBox.x - (leftBox.width));
-		int yDiff = this.y - (leftBox.y + (leftBox.height));
-		double distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-		return this.radius + leftBox.width >= distance;
+		if (this.x - this.radius / 8 > 0 && this.x - this.radius / 8 <= leftBox.x + leftBox.width) {
+			this.boxVelY = leftBox.velY;
+			return true;
+		}
+		return false;
+//		int xDiff = this.x - (leftBox.x - (leftBox.width));
+//		int yDiff = this.y - (leftBox.y + (leftBox.height));
+//		double distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+//		return this.radius + leftBox.width >= distance;
 	}
-	
+
 	public boolean overlapsWithRight(Boxes rightBox) {
 
-		int xDiff = this.x - (rightBox.x);
-		int yDiff = this.y - (rightBox.y + (rightBox.height));
-		double distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-		return this.radius + rightBox.width >= distance;
+		if (this.x + this.radius > rightBox.x && this.x + this.radius <= 1275) {
+			this.boxVelY = rightBox.y;
+			return true;
+		}
+		return false;
+//		int xDiff = this.x - (rightBox.x);
+//		int yDiff = this.y - (rightBox.y + (rightBox.height));
+//		double distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
+//		return this.radius + rightBox.width >= distance;
+	}
+
+	public void bounceBack() {
+
+		this.velX = (-1) * this.velX;
 	}
 }
