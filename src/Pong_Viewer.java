@@ -1,8 +1,4 @@
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JFrame;
-import javax.swing.Timer;
 
 public class Pong_Viewer {
 
@@ -28,14 +24,13 @@ public class Pong_Viewer {
 	public void run() {
 
 		long lastTime = System.nanoTime();
-		final double ns = 1000000000.0 / 60.0;// 60 times per second
+		final double ns = 1000000000.0 / 60.0; // 60 times per second
 		double delta = 0;
 		while (this.running) {
 			long now = System.nanoTime();
 			delta = delta + ((now - lastTime) / ns);
 			lastTime = now;
-			while (delta >= 1)// Make sure update is only happening 60 times a second
-			{
+			while (delta >= 1) { // Make sure update is only happening 60 times a second
 				// handles all of the logic restricted time
 				delta--;
 				this.panel.update();

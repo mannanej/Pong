@@ -1,5 +1,6 @@
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.JFrame;
@@ -31,6 +32,18 @@ public class Pong_Panel extends JPanel {
 
 	@Override
 	public void paintComponent(Graphics g) {
+
+		g.setColor(Color.WHITE);
+		
+		Font title = new Font("Times New Roman", Font.BOLD, 100);
+		g.setFont(title);
+		g.drawString("Pong", (int) (this.WIN_WIDTH / 2.4), this.WIN_HEIGHT - 125);
+		
+		Font dottedLine = new Font("Times New Roman", Font.PLAIN, 50);
+		g.setFont(dottedLine);
+		for (int i = 1; i < 14; i++) {
+			g.drawString("|", (int) (this.WIN_WIDTH / 2), 50 * i);
+		}
 
 		this.setBackground(Color.BLACK);
 		this.leftBox.drawOn(g);
