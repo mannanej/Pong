@@ -24,16 +24,16 @@ public class Ball {
 		this.frameMaxY = 675;
 		Double ran = Math.random();
 		if (ran >= 0 && ran < 25) {
-			this.velX = this.moveSpeed;
+			this.velX = (int) (this.moveSpeed + (ran * 10));
 			this.velY = this.moveSpeed;
 		} else if (ran >= 25 && ran < 50) {
-			this.velX = (-1) * this.moveSpeed;
+			this.velX = (int) ((-1) * (this.moveSpeed + (ran * 10)));
 			this.velY = this.moveSpeed;
 		} else if (ran >= 50 && ran < 75) {
-			this.velX = this.moveSpeed;
+			this.velX = (int) (this.moveSpeed + (ran * 10));
 			this.velY = (-1) * this.moveSpeed;
 		} else {
-			this.velX = (-1) * this.moveSpeed;
+			this.velX = (int) ((-1) * (this.moveSpeed + (ran * 10)));
 			this.velY = (-1) * this.moveSpeed;
 		}
 	}

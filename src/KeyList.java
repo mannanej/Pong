@@ -23,7 +23,6 @@ public class KeyList implements KeyListener {
 
 		int key = e.getKeyCode();
 
-		System.out.println("Moving!");
 		if (key == KeyEvent.VK_UP) {
 			this.rightBox.moveUp();
 		} else if (key == KeyEvent.VK_DOWN) {
