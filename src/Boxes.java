@@ -17,7 +17,7 @@ public class Boxes {
 		this.x = x;
 		this.y = y;
 		this.width = 30;
-		this.height = 250;
+		this.height = 100;
 		this.moveSpeed = 5;
 		this.velX = 0;
 		this.velY = 0;

@@ -17,9 +17,21 @@ public class Ball {
 		this.x = x;
 		this.y = y;
 		this.radius = 50;
-		this.moveSpeed = 10; // 10
-		this.velX = (int) (this.moveSpeed - (Math.random() * 10) + 1);
-		this.velY = (int) (this.moveSpeed - (Math.random() * 10) + 1);
+		this.moveSpeed = 10;
+		Double ran = Math.random();
+		if (ran >= 0 && ran < 25) {
+			this.velX = this.moveSpeed;
+			this.velY = this.moveSpeed;
+		} else if (ran >= 25 && ran < 50) {
+			this.velX = (-1) * this.moveSpeed;
+			this.velY = this.moveSpeed;
+		} else if (ran >= 50 && ran < 75) {
+			this.velX = this.moveSpeed;
+			this.velY = (-1) * this.moveSpeed;
+		} else {
+			this.velX = (-1) * this.moveSpeed;
+			this.velY = (-1) * this.moveSpeed;
+		}
 	}
 
 	public void drawOn(Graphics g) {
