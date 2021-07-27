@@ -10,14 +10,16 @@ public class Boxes {
 	int velY;
 	int width;
 	int height;
+	int frameMaxY;
 	int moveSpeed;
 
 	public Boxes(int x, int y) {
 
 		this.x = x;
 		this.y = y;
-		this.width = 30;
+		this.width = 50;
 		this.height = 100;
+		this.frameMaxY = 675;
 		this.moveSpeed = 5;
 		this.velX = 0;
 		this.velY = 0;
@@ -34,6 +36,11 @@ public class Boxes {
 
 		this.x += this.velX;
 		this.y += this.velY;
+		
+		if (this.y + 20 <= 0 || this.y + 130 >= this.frameMaxY) {
+			this.y -= this.velY;
+			this.velY = 0;
+		}
 	}
 
 	public void normalizeVelocity() {

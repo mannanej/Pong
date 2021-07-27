@@ -11,6 +11,8 @@ public class Ball {
 	int boxVelY;
 	int radius;
 	int moveSpeed;
+	int leftScore;
+	int rightScore;
 	int frameMaxX;
 	int frameMaxY;
 
@@ -19,7 +21,7 @@ public class Ball {
 		this.x = x;
 		this.y = y;
 		this.radius = 50;
-		this.moveSpeed = 10;
+		this.moveSpeed = 7;//10
 		this.frameMaxX = 1275;
 		this.frameMaxY = 675;
 		Double ran = Math.random();
@@ -53,9 +55,12 @@ public class Ball {
 			this.velY = (-1) * this.velY;
 		}
 		if ((this.x - (this.radius - 45)) <= 0 || (this.x + (this.radius + 20)) >= this.frameMaxX) {
+//			this.leftScore++;
 			this.velX = (-1) * this.velX;
 		}
 		if (this.x >= 1275 || this.x <= 0) {
+//			this.leftScore++;
+			this.stop();
 			this.x = (int) Math.min(Math.max(this.x, 0), this.frameMaxX);
 			this.velX = 0;
 		}
@@ -122,7 +127,7 @@ public class Ball {
 
 	public boolean overlapsWithRight(Boxes rightBox) {
 
-		if (this.x + this.radius > rightBox.x && this.x + this.radius <= this.frameMaxX) {
+		if (this.x + this.radius >= rightBox.x && this.x + this.radius <= this.frameMaxX && this.y > rightBox.y - 30 && this.y < rightBox.y + rightBox.height) {
 			this.boxVelY = rightBox.y;
 			return true;
 		}

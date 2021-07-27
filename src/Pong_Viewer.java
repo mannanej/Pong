@@ -12,19 +12,20 @@ public class Pong_Viewer {
 		this.frame = new JFrame();
 		this.panel = new Pong_Panel(this.frame);
 		this.frame.add(this.panel);
-		this.frame.addKeyListener(this.listener);
+//		this.frame.addKeyListener(this.listener);
 		this.running = true;
 
 		this.frame.setVisible(true);
 		this.frame.setTitle("Pong!");
 		this.frame.setSize(1275, 675);
+		this.panel.setSize(1275, 675);
 		this.frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 	public void run() {
 
 		long lastTime = System.nanoTime();
-		final double ns = 1000000000.0 / 60.0; // 60 times per second
+		final double ns = 1000000000.0 / 30.0; // 60 times per second
 		double delta = 0;
 		while (this.running) {
 			long now = System.nanoTime();

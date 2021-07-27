@@ -15,8 +15,8 @@ public class Pong_Panel extends JPanel {
 	public Ball ball;
 	private final int WIN_WIDTH = 1275;
 	private final int WIN_HEIGHT = 725;
-	public String leftScore;
-	public String rightScore;
+	public int leftScore = 0;
+	public int rightScore = 0;
 
 	public Pong_Panel(JFrame frame) {
 
@@ -24,8 +24,8 @@ public class Pong_Panel extends JPanel {
 		this.frame.setBackground(Color.BLACK);
 		this.setBackground(Color.BLACK);
 		this.setPreferredSize(new Dimension(this.WIN_WIDTH, this.WIN_HEIGHT));
-		this.leftBox = new Boxes(0, 240);
-		this.rightBox = new Boxes(WIN_WIDTH - 45, 240);
+		this.leftBox = new Boxes(5, 240);
+		this.rightBox = new Boxes(WIN_WIDTH - 70, 240);
 		this.frame.addKeyListener(new KeyList(this.leftBox, this.rightBox));
 		this.ball = new Ball(WIN_WIDTH / 2, WIN_HEIGHT / 2);
 	}
@@ -38,6 +38,11 @@ public class Pong_Panel extends JPanel {
 		Font title = new Font("Times New Roman", Font.BOLD, 100);
 		g.setFont(title);
 		g.drawString("Pong", (int) (this.WIN_WIDTH / 2.4), this.WIN_HEIGHT - 125);
+		
+		Font score = new Font("Times New Roman", Font.BOLD, 100);
+		g.setFont(score);
+		g.drawString("" + this.leftScore, (this.WIN_WIDTH / 2) - 100, 100);
+		g.drawString("" + this.rightScore, (this.WIN_WIDTH / 2) + 5, 100);
 		
 		Font dottedLine = new Font("Times New Roman", Font.PLAIN, 50);
 		g.setFont(dottedLine);
@@ -55,9 +60,10 @@ public class Pong_Panel extends JPanel {
 
 		this.leftBox.update();
 		this.rightBox.update();
+		this.ball.update();
 		if (this.ball.overlapsWithLeft(this.leftBox) || this.ball.overlapsWithRight(this.rightBox)) {
+			this.leftScore++;
 			this.ball.bounceBack();
 		}
-		this.ball.update();
 	}
 }
