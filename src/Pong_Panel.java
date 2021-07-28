@@ -2,7 +2,14 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -11,6 +18,7 @@ public class Pong_Panel extends JPanel {
 	private static final long serialVersionUID = 7932841840610077942L;
 	private final int WIN_WIDTH = 1275;
 	private final int WIN_HEIGHT = 725;
+	public Clip hitClip;
 	public LeftCPU leftCPU;
 	public RightCPU rightCPU;
 	public JFrame frame;
@@ -34,6 +42,14 @@ public class Pong_Panel extends JPanel {
 		this.leftCPU = new LeftCPU();
 		this.rightCPU = new RightCPU();
 		this.frame.addKeyListener(new KeyList(this, this.leftBox, this.rightBox));
+		try {
+			File hit = new File("src/sounds/bounce.wav");
+			this.hitClip = AudioSystem.getClip();
+			AudioInputStream hitInputStream = AudioSystem.getAudioInputStream(hit);
+			this.hitClip.open(hitInputStream);
+		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	@Override
@@ -75,6 +91,9 @@ public class Pong_Panel extends JPanel {
 		}
 		if (this.ball.overlapsWithLeft(this.leftBox) || this.ball.overlapsWithRight(this.rightBox)) {
 			this.ball.bounceBack();
+			this.hitClip.stop();
+			this.hitClip.setFramePosition(0);
+			this.hitClip.start();
 		}
 		if (this.ball.scoreLeft()) {
 			this.leftScore++;
