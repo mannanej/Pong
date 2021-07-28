@@ -33,6 +33,12 @@ public class KeyList implements KeyListener {
 			this.leftBox.moveUp();
 		} else if (key == KeyEvent.VK_S) {
 			this.leftBox.moveDown();
+		} else if (key == KeyEvent.VK_C) {
+			this.leftBox.moveCloserLeft();
+			this.rightBox.moveCloserRight();
+		} else if (key == KeyEvent.VK_F) {
+			this.leftBox.moveFartherLeft();
+			this.rightBox.moveFartherRight();
 		}
 	}
 

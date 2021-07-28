@@ -36,7 +36,7 @@ public class Boxes {
 
 		this.x += this.velX;
 		this.y += this.velY;
-		
+
 		if (this.y + 20 <= 0 || this.y + 130 >= this.frameMaxY) {
 			this.y -= this.velY;
 			this.velY = 0;
@@ -83,5 +83,26 @@ public class Boxes {
 
 		this.velX = 0;
 		this.velY = 0;
+	}
+
+	public void moveCloserLeft() {
+
+		this.x += this.width;
+	}
+
+	public void moveCloserRight() {
+
+		this.x -= this.width;
+	}
+
+	public void moveFartherLeft() {
+
+		this.x -= this.width;
+	}
+
+	public void moveFartherRight() {
+
+		this.x += this.width;
+
 	}
 }
