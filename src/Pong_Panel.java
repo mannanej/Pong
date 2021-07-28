@@ -9,10 +9,14 @@ import javax.swing.JPanel;
 public class Pong_Panel extends JPanel {
 
 	private static final long serialVersionUID = 7932841840610077942L;
+	public LeftCPU leftCPU;
+	public RightCPU rightCPU;
 	public JFrame frame;
 	public Boxes leftBox;
 	public Boxes rightBox;
 	public Ball ball;
+	public boolean leftCPUEnabled = false;
+	public boolean rightCPUEnabled = false;
 	private final int WIN_WIDTH = 1275;
 	private final int WIN_HEIGHT = 725;
 	public int leftScore = 0;
@@ -25,9 +29,11 @@ public class Pong_Panel extends JPanel {
 		this.setBackground(Color.BLACK);
 		this.setPreferredSize(new Dimension(this.WIN_WIDTH, this.WIN_HEIGHT));
 		this.leftBox = new Boxes(5, 240);
-		this.rightBox = new Boxes(WIN_WIDTH - 70, 240);
-		this.frame.addKeyListener(new KeyList(this.leftBox, this.rightBox));
-		this.ball = new Ball(WIN_WIDTH / 2, WIN_HEIGHT / 2);
+		this.rightBox = new Boxes(this.WIN_WIDTH - 70, 240);
+		this.ball = new Ball(this.WIN_WIDTH / 2, this.WIN_HEIGHT / 2);
+		this.leftCPU = new LeftCPU();
+		this.rightCPU = new RightCPU();
+		this.frame.addKeyListener(new KeyList(this, this.leftBox, this.rightBox));
 	}
 
 	@Override
@@ -61,16 +67,22 @@ public class Pong_Panel extends JPanel {
 		this.leftBox.update();
 		this.rightBox.update();
 		this.ball.update();
+		if (this.leftCPUEnabled) {
+			this.leftCPU.update(this.leftBox, this.ball);
+		}
+		if (this.rightCPUEnabled) {
+			this.rightCPU.update(this.rightBox, this.ball);
+		}
 		if (this.ball.overlapsWithLeft(this.leftBox) || this.ball.overlapsWithRight(this.rightBox)) {
 			this.ball.bounceBack();
 		}
 		if (this.ball.scoreLeft()) {
 			this.leftScore++;
-			this.ball = new Ball(WIN_WIDTH / 2, WIN_HEIGHT / 2);
+			this.ball = new Ball(this.WIN_WIDTH / 2, this.WIN_HEIGHT / 2);
 		}
 		if (this.ball.scoreRight()) {
 			this.rightScore++;
-			this.ball = new Ball(WIN_WIDTH / 2, WIN_HEIGHT / 2);
+			this.ball = new Ball(this.WIN_WIDTH / 2, this.WIN_HEIGHT / 2);
 		}
 	}
 }

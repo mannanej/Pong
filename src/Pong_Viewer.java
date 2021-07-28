@@ -24,7 +24,7 @@ public class Pong_Viewer {
 	public void run() {
 
 		long lastTime = System.nanoTime();
-		final double ns = 1000000000.0 / 30.0; // 60 times per second
+		final double ns = 1000000000.0 / 60.0; // 60 times per second
 		double delta = 0;
 		while (this.running) {
 			long now = System.nanoTime();

@@ -3,11 +3,13 @@ import java.awt.event.KeyListener;
 
 public class KeyList implements KeyListener {
 
+	public Pong_Panel panel;
 	public Boxes leftBox;
 	public Boxes rightBox;
 
-	public KeyList(Boxes leftBox, Boxes rightBox) {
+	public KeyList(Pong_Panel panel, Boxes leftBox, Boxes rightBox) {
 
+		this.panel = panel;
 		this.leftBox = leftBox;
 		this.rightBox = rightBox;
 	}
@@ -46,6 +48,10 @@ public class KeyList implements KeyListener {
 		} else if (key == KeyEvent.VK_ESCAPE) {
 			this.leftBox.moveRight();
 			this.rightBox.moveLeft();
+		} else if (key == KeyEvent.VK_L) {
+			this.panel.leftCPUEnabled = true;
+		} else if (key == KeyEvent.VK_R) {
+			this.panel.rightCPUEnabled = true;
 		}
 	}
 }

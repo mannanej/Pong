@@ -21,17 +21,17 @@ public class Ball {
 		this.x = x;
 		this.y = y;
 		this.radius = 50;
-		this.moveSpeed = 7;//10
+		this.moveSpeed = 10;
 		this.frameMaxX = 1275;
 		this.frameMaxY = 675;
 		Double ran = Math.random();
-		if (ran >= 0 && ran < 25) {
+		if (ran >= 0.00 && ran < 0.25) {
 			this.velX = (int) (this.moveSpeed + (ran * 10));
 			this.velY = this.moveSpeed;
-		} else if (ran >= 25 && ran < 50) {
+		} else if (ran >= 0.25 && ran < 0.50) {
 			this.velX = (int) ((-1) * (this.moveSpeed + (ran * 10)));
 			this.velY = this.moveSpeed;
-		} else if (ran >= 50 && ran < 75) {
+		} else if (ran >= 0.50 && ran < 0.75) {
 			this.velX = (int) (this.moveSpeed + (ran * 10));
 			this.velY = (-1) * this.moveSpeed;
 		} else {
