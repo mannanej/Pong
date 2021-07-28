@@ -9,6 +9,8 @@ import javax.swing.JPanel;
 public class Pong_Panel extends JPanel {
 
 	private static final long serialVersionUID = 7932841840610077942L;
+	private final int WIN_WIDTH = 1275;
+	private final int WIN_HEIGHT = 725;
 	public LeftCPU leftCPU;
 	public RightCPU rightCPU;
 	public JFrame frame;
@@ -17,8 +19,6 @@ public class Pong_Panel extends JPanel {
 	public Ball ball;
 	public boolean leftCPUEnabled = false;
 	public boolean rightCPUEnabled = false;
-	private final int WIN_WIDTH = 1275;
-	private final int WIN_HEIGHT = 725;
 	public int leftScore = 0;
 	public int rightScore = 0;
 
@@ -40,16 +40,16 @@ public class Pong_Panel extends JPanel {
 	public void paintComponent(Graphics g) {
 
 		g.setColor(Color.WHITE);
-		
+
 		Font title = new Font("Times New Roman", Font.BOLD, 100);
 		g.setFont(title);
 		g.drawString("Pong", (int) (this.WIN_WIDTH / 2.4), this.WIN_HEIGHT - 125);
-		
+
 		Font score = new Font("Times New Roman", Font.BOLD, 100);
 		g.setFont(score);
 		g.drawString("" + this.leftScore, (this.WIN_WIDTH / 2) - 100, 100);
 		g.drawString("" + this.rightScore, (this.WIN_WIDTH / 2) + 5, 100);
-		
+
 		Font dottedLine = new Font("Times New Roman", Font.PLAIN, 50);
 		g.setFont(dottedLine);
 		for (int i = 1; i < 14; i++) {

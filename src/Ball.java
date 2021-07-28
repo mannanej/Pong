@@ -112,8 +112,9 @@ public class Ball {
 
 	public boolean overlapsWithLeft(Boxes leftBox) {
 
-		if (this.x - this.radius / 8 > 0 && this.x - this.radius / 8 <= leftBox.x + leftBox.width && this.y > leftBox.y - 30 && this.y < leftBox.y + leftBox.height) {
-			this.boxVelY = leftBox.velY;
+		if (this.x - this.radius / 8 > 0 && this.x - this.radius / 8 <= leftBox.x + leftBox.width
+				&& this.y > leftBox.y - 30 && this.y < leftBox.y + leftBox.height) {
+			this.boxVelY += leftBox.velY;
 			return true;
 		}
 		return false;
@@ -121,23 +122,24 @@ public class Ball {
 
 	public boolean overlapsWithRight(Boxes rightBox) {
 
-		if (this.x + this.radius >= rightBox.x && this.x + this.radius <= this.frameMaxX && this.y > rightBox.y - 30 && this.y < rightBox.y + rightBox.height) {
-			this.boxVelY = rightBox.y;
+		if (this.x + this.radius >= rightBox.x && this.x + this.radius <= this.frameMaxX && this.y > rightBox.y - 30
+				&& this.y < rightBox.y + rightBox.height) {
+			this.boxVelY += rightBox.velY;
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean scoreLeft() {
-		
+
 		if (this.x + this.radius >= this.frameMaxX - this.radius / 2) {
 			return true;
 		}
 		return false;
 	}
-	
+
 	public boolean scoreRight() {
-		
+
 		if (this.x - this.radius / 8 <= 0) {
 			return true;
 		}
