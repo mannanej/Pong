@@ -12,7 +12,6 @@ public class Pong_Viewer {
 		this.frame = new JFrame();
 		this.panel = new Pong_Panel(this.frame);
 		this.frame.add(this.panel);
-//		this.frame.addKeyListener(this.listener);
 		this.running = true;
 
 		this.frame.setVisible(true);

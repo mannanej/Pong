@@ -55,11 +55,9 @@ public class Ball {
 			this.velY = (-1) * this.velY;
 		}
 		if ((this.x - (this.radius - 45)) <= 0 || (this.x + (this.radius + 20)) >= this.frameMaxX) {
-//			this.leftScore++;
 			this.velX = (-1) * this.velX;
 		}
 		if (this.x >= 1275 || this.x <= 0) {
-//			this.leftScore++;
 			this.stop();
 			this.x = (int) Math.min(Math.max(this.x, 0), this.frameMaxX);
 			this.velX = 0;
@@ -114,15 +112,11 @@ public class Ball {
 
 	public boolean overlapsWithLeft(Boxes leftBox) {
 
-		if (this.x - this.radius / 8 > 0 && this.x - this.radius / 8 <= leftBox.x + leftBox.width) {
+		if (this.x - this.radius / 8 > 0 && this.x - this.radius / 8 <= leftBox.x + leftBox.width && this.y > leftBox.y - 30 && this.y < leftBox.y + leftBox.height) {
 			this.boxVelY = leftBox.velY;
 			return true;
 		}
 		return false;
-//		int xDiff = this.x - (leftBox.x - (leftBox.width));
-//		int yDiff = this.y - (leftBox.y + (leftBox.height));
-//		double distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-//		return this.radius + leftBox.width >= distance;
 	}
 
 	public boolean overlapsWithRight(Boxes rightBox) {
@@ -132,10 +126,22 @@ public class Ball {
 			return true;
 		}
 		return false;
-//		int xDiff = this.x - (rightBox.x);
-//		int yDiff = this.y - (rightBox.y + (rightBox.height));
-//		double distance = Math.sqrt(xDiff * xDiff + yDiff * yDiff);
-//		return this.radius + rightBox.width >= distance;
+	}
+	
+	public boolean scoreLeft() {
+		
+		if (this.x + this.radius >= this.frameMaxX - this.radius / 2) {
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean scoreRight() {
+		
+		if (this.x - this.radius / 8 <= 0) {
+			return true;
+		}
+		return false;
 	}
 
 	public void bounceBack() {

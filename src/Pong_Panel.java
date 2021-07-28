@@ -62,8 +62,15 @@ public class Pong_Panel extends JPanel {
 		this.rightBox.update();
 		this.ball.update();
 		if (this.ball.overlapsWithLeft(this.leftBox) || this.ball.overlapsWithRight(this.rightBox)) {
-			this.leftScore++;
 			this.ball.bounceBack();
+		}
+		if (this.ball.scoreLeft()) {
+			this.leftScore++;
+			this.ball = new Ball(WIN_WIDTH / 2, WIN_HEIGHT / 2);
+		}
+		if (this.ball.scoreRight()) {
+			this.rightScore++;
+			this.ball = new Ball(WIN_WIDTH / 2, WIN_HEIGHT / 2);
 		}
 	}
 }
