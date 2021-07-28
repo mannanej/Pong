@@ -4,7 +4,6 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.IOException;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
@@ -19,6 +18,7 @@ public class Pong_Panel extends JPanel {
 	private final int WIN_WIDTH = 1275;
 	private final int WIN_HEIGHT = 725;
 	public Clip hitClip;
+	public Clip scoreClip;
 	public LeftCPU leftCPU;
 	public RightCPU rightCPU;
 	public JFrame frame;
@@ -44,9 +44,13 @@ public class Pong_Panel extends JPanel {
 		this.frame.addKeyListener(new KeyList(this, this.leftBox, this.rightBox));
 		try {
 			File hit = new File("src/sounds/bounce.wav");
+			File score = new File("src/sounds/score.wav");
 			this.hitClip = AudioSystem.getClip();
+			this.scoreClip = AudioSystem.getClip();
 			AudioInputStream hitInputStream = AudioSystem.getAudioInputStream(hit);
+			AudioInputStream scoreInputStream = AudioSystem.getAudioInputStream(score);
 			this.hitClip.open(hitInputStream);
+			this.scoreClip.open(scoreInputStream);
 		} catch (LineUnavailableException | UnsupportedAudioFileException | IOException e) {
 			e.printStackTrace();
 		}
@@ -97,10 +101,15 @@ public class Pong_Panel extends JPanel {
 		}
 		if (this.ball.scoreLeft()) {
 			this.leftScore++;
+			this.scoreClip.stop();
+			this.scoreClip.setFramePosition(0);
+			this.scoreClip.start();
 			this.ball = new Ball(this.WIN_WIDTH / 2, this.WIN_HEIGHT / 2);
 		}
 		if (this.ball.scoreRight()) {
-			this.rightScore++;
+			this.rightScore++;this.scoreClip.stop();
+			this.scoreClip.setFramePosition(0);
+			this.scoreClip.start();
 			this.ball = new Ball(this.WIN_WIDTH / 2, this.WIN_HEIGHT / 2);
 		}
 	}
