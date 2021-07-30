@@ -39,6 +39,14 @@ public class KeyList implements KeyListener {
 		} else if (key == KeyEvent.VK_F) {
 			this.leftBox.moveFartherLeft();
 			this.rightBox.moveFartherRight();
+		} else if (key == KeyEvent.VK_B) {
+			this.panel.ball = new Ball(1275 / 2, 725 / 2);
+		} else if (key == KeyEvent.VK_I) {
+			if (this.panel.instructions == true) {
+				this.panel.instructions = false;
+			} else {
+				this.panel.instructions = true;
+			}
 		}
 	}
 
@@ -52,12 +60,19 @@ public class KeyList implements KeyListener {
 		} else if (key == KeyEvent.VK_W || key == KeyEvent.VK_S) {
 			this.leftBox.stop();
 		} else if (key == KeyEvent.VK_ESCAPE) {
-			this.leftBox.moveRight();
-			this.rightBox.moveLeft();
+			System.exit(0);
 		} else if (key == KeyEvent.VK_L) {
-			this.panel.leftCPUEnabled = true;
+			if (this.panel.leftCPUEnabled == true) {
+				this.panel.leftCPUEnabled = false;
+			} else {
+				this.panel.leftCPUEnabled = true;
+			}
 		} else if (key == KeyEvent.VK_R) {
-			this.panel.rightCPUEnabled = true;
+			if (this.panel.rightCPUEnabled == true) {
+				this.panel.rightCPUEnabled = false;
+			} else {
+				this.panel.rightCPUEnabled = true;
+			}
 		}
 	}
 }
