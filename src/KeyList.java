@@ -47,6 +47,12 @@ public class KeyList implements KeyListener {
 			} else {
 				this.panel.instructions = true;
 			}
+		} else if (key == KeyEvent.VK_G) {
+			if (this.panel.graphics == true) {
+				this.panel.graphics = false;
+			} else {
+				this.panel.graphics = true;
+			}
 		}
 	}
 

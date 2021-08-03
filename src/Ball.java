@@ -1,6 +1,10 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 
 public class Ball {
 
@@ -40,11 +44,21 @@ public class Ball {
 		}
 	}
 
-	public void drawOn(Graphics g) {
+	public void drawOn(Graphics g, Pong_Panel panel) {
 
-		g = (Graphics2D) g.create();
-		g.setColor(Color.WHITE);
-		g.fillOval(this.x, this.y, this.radius, this.radius);
+		if (panel.graphics) {
+			BufferedImage image = null;
+			try {
+				image = ImageIO.read(new File("src/images/ball.png"));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			g.drawImage(image, this.x, this.y, null);
+		} else {
+			g = (Graphics2D) g.create();
+			g.setColor(Color.WHITE);
+			g.fillOval(this.x, this.y, this.radius, this.radius);
+		}
 	}
 
 	public void update() {

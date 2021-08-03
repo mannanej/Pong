@@ -30,6 +30,7 @@ public class Pong_Panel extends JPanel {
 	public int leftScore = 0;
 	public int rightScore = 0;
 	public boolean instructions;
+	public boolean graphics = false;
 
 	public Pong_Panel(JFrame frame) {
 
@@ -82,7 +83,7 @@ public class Pong_Panel extends JPanel {
 			this.setBackground(Color.BLACK);
 			this.leftBox.drawOn(g);
 			this.rightBox.drawOn(g);
-			this.ball.drawOn(g);
+			this.ball.drawOn(g, this);
 		} else {
 			g.setColor(Color.WHITE);
 
